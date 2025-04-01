@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
-from pydantic_ai import Agent, RunContext
+from pydantic_ai import Agent
+from agents import Agent_with_memory
 from pydantic_ai.models.openai import OpenAIModel
 from memory_management import *
 from mem0 import Memory
@@ -20,11 +21,20 @@ def main():
     
     agent = Agent(model, system_prompt=system_prompt)
     
+    conversation = []
+    
     user_question = input("Stelle eine Frage an das Orakel:\n")
+
     
-    response = agent.run_sync(user_question)
+    #response = agent.run_sync(user_question)
+    #conversation.append(response)
     
-    print(response)
+    
+    #print(conversation)
+    
+    agent2 = Agent_with_memory()
+    result2 = agent2.process_with_memories(user_question)
+    print(result2)
     
     
     

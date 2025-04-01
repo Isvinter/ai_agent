@@ -2,3 +2,4 @@ venv
 .env
 test.ipynb
 db
+__pycache__/
